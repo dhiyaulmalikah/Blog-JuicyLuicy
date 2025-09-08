@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Juicy Luicy</title>
+    <style>
+      :root {
+        /* Palet warna baru dari biru tua */
+        /** Mendefinisikan properti kustom (variabel) untuk palet warna, sehingga mudah dikelola dan diubah di seluruh stylesheet. */
+        --bg-color: #94b2cf; /* Warna latar belakang utama */
+        --container-bg: #e9f3f7; /* Warna latar belakang container */
+        --primary-color: #073e79; /* Warna utama untuk judul, dll. */
+        --secondary-color: #4a4a4a; /* Warna sekunder untuk teks */
+        --accent-color: #2a73a9; /* Warna aksen untuk garis bawah, dll. */
+        --border-color: #c2d4e7; /* Warna untuk batas/garis */
+      }
+
+      body {
+        font-family: "Montserrat", sans-serif; /* Mengatur font utama */
+        margin: 0; /* Menghilangkan margin default browser */
+        background-color: var(
+          --bg-color
+        ); /* Menggunakan warna latar belakang utama */
+        color: var(--secondary-color); /* Menggunakan warna teks sekunder */
+        line-height: 1.6; /* Mengatur jarak antar baris */
+        padding: 20px; /* Menambah padding di sekitar body */
+        display: grid; /* Mengatur tata letak sebagai grid */
+        font-size: 1.125em; /* Meningkatkan ukuran font dasar */
+      }
+
+      .container {
+        width: 90%; /* Lebar container 90% dari parent */
+        max-width: 900px; /* Batas lebar maksimum container */
+        margin: 40px auto; /* Mengatur margin atas-bawah dan menengahkan secara horizontal */
+        background-color: var(
+          --container-bg
+        ); /* Menggunakan warna latar belakang container */
+        padding: 40px; /* Menambah padding di dalam container */
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Menambah bayangan lembut */
+        border-radius: 8px; /* Sudut membulat pada container */
+        text-align: left; /* Teks rata kiri */
+      }
+
+      .header {
+        text-align: center; /* Teks di dalam header rata tengah */
+        padding-bottom: 20px; /* Padding di bagian bawah header */
+        position: relative; /* Mengatur posisi relatif */
+      }
+
+      .header h1 {
+        font-family: "Playfair Display", serif; /* Mengatur font untuk h1 */
+        font-size: 3.5em; /* Ukuran font besar */
+        color: var(--primary-color); /* Warna font utama */
+        margin: 0; /* Menghilangkan margin default h1 */
+        font-weight: 700; /* Ketebalan font tebal */
+        letter-spacing: 2px; /* Jarak antar huruf */
+        position: relative; /* Mengatur posisi relatif */
+        display: inline-block; /* Memungkinkan penggunaan pseudo-element */
+      }
+
+      .header h1:after {
+        content: ""; /* Membuat elemen kosong */
+        position: absolute; /* Mengatur posisi absolut */
+        bottom: -5px; /* Jarak dari bawah elemen */
+        left: 50%; /* Mulai dari 50% dari kiri */
+        transform: translateX(
+          -50%
+        ); /* Menggeser ke kiri 50% dari lebar elemen */
+        width: 70%; /* Lebar garis bawah */
+        height: 4px; /* Tinggi garis bawah */
+        background: var(--accent-color); /* Warna garis bawah aksen */
+        border-radius: 2px; /* Sudut membulat pada garis */
+      }
+
+      .welcome-text {
+        font-size: 1.2em; /* Ukuran font sedang */
+        color: var(--secondary-color); /* Warna font sekunder */
+        margin-top: 20px; /* Margin atas */
+        font-weight: 500; /* Ketebalan font sedang */
+        font-style: italic; /* Gaya font miring */
+      }
+
+      .profile-img {
+        margin: 30px 0; /* Margin atas-bawah */
+        text-align: center; /* Gambar rata tengah */
+      }
+
+      .profile-img img {
+        width: 100%; /* Lebar gambar 100% dari parent */
+        max-width: 600px; /* Batas lebar maksimum gambar */
+        height: auto; /* Tinggi menyesuaikan proporsi */
+        border-radius: 12px; /* Sudut membulat pada gambar */
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1); /* Bayangan gambar */
+        transition: transform 1s ease; /* Transisi untuk efek hover */
+      }
+
+      .profile-img img:hover {
+        transform: scale(1.02); /* Memperbesar gambar saat dihover */
+      }
+
+      h2 {
+        font-family: "Playfair Display", serif; /* Mengatur font untuk h2 */
+        font-size: 2em; /* Ukuran font besar */
+        color: var(--primary-color); /* Warna font utama */
+        text-align: left; /* Teks rata kiri */
+        border-bottom: 2px solid var(--border-color); /* Garis bawah solid */
+        padding-bottom: 8px; /* Padding di bawah garis */
+        margin-top: 40px; /* Margin atas */
+      }
+
+      h3 {
+        font-family: "Playfair Display", serif; /* Mengatur font untuk h3 */
+        color: var(--primary-color); /* Warna font utama */
+        font-size: 1.5em; /* Ukuran font sedang */
+        margin-top: 30px; /* Margin atas */
+        position: relative; /* Mengatur posisi relatif */
+      }
+
+      h3:before {
+        content: "•"; /* Membuat bullet point */
+        color: var(--accent-color); /* Warna bullet point aksen */
+        font-size: 1.5em; /* Ukuran bullet point */
+        position: absolute; /* Mengatur posisi absolut */
+        left: -20px; /* Jarak dari kiri elemen */
+        top: -5px; /* Jarak dari atas elemen */
+      }
+
+      .profile-list {
+        list-style: none; /* Menghilangkan bullet default */
+        padding: 0; /* Menghilangkan padding default */
+        display: block; /* Mengatur sebagai blok */
+      }
+
+      .profile-list li {
+        background-color: #f8f9fa; /* Warna latar belakang item list */
+        padding: 15px 20px; /* Padding di dalam item */
+        border-left: 5px solid var(--primary-color); /* Garis tebal di kiri */
+        border-radius: 8px; /* Sudut membulat */
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* Bayangan lembut */
+        transition: background-color 0.3s ease; /* Transisi untuk efek hover */
+        margin-bottom: 12px; /* Jarak antar item */
+      }
+
+      .profile-list li:hover {
+        background-color: var(
+          --border-color
+        ); /* Mengubah warna latar belakang saat dihover */
+      }
+      .profile-list strong {
+        color: var(--primary-color); /* Warna teks tebal */
+        font-weight: 600; /* Ketebalan font semi-bold */
+      }
+
+      .content-section {
+        margin-top: 40px; /* Margin atas bagian konten */
+      }
+
+      .post-info {
+        font-size: 0.9em; /* Ukuran font kecil */
+        color: var(--accent-color); /* Warna font aksen */
+        margin-bottom: 25px; /* Margin bawah */
+        border-left: 2px solid var(--accent-color); /* Garis kiri aksen */
+        padding-left: 10px; /* Padding kiri */
+      }
+
+      .post-content p {
+        margin-bottom: 20px; /* Jarak antar paragraf */
+        text-align: justify; /* Teks rata kiri dan kanan */
+      }
+
+      .album-list {
+        display: flex; /* Mengatur tata letak sebagai flexbox */
+        flex-wrap: wrap; /* Membungkus item ke baris baru */
+        gap: 20px; /* Jarak antar item */
+        list-style: none; /* Menghilangkan bullet */
+        padding: 0; /* Menghilangkan padding */
+        margin-top: 30px; /* Margin atas */
+        justify-content: flex-start; /* Mengatur item dari kiri */
+      }
+
+      .album-item {
+        text-align: center; /* Teks di tengah item */
+        background-color: var(--container-bg); /* Warna latar belakang item */
+        padding: 20px; /* Padding di dalam item */
+        border-radius: 12px; /* Sudut membulat */
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* Bayangan lembut */
+        transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transisi untuk efek hover */
+        flex: 1 1 200px; /* Mengatur flex-grow, flex-shrink, dan basis item */
+        max-width: 220px; /* Batas lebar maksimum item */
+      }
+
+      .album-item:hover {
+        transform: translateY(-8px); /* Menggeser item ke atas saat dihover */
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); /* Bayangan lebih jelas saat dihover */
+      }
+
+      .album-item a {
+        color: var(--primary-color); /* Warna link */
+        text-decoration: none; /* Menghilangkan garis bawah link */
+        font-weight: bold; /* Ketebalan font tebal */
+        font-size: 1.2em; /* Ukuran font link */
+        display: block; /* Link sebagai blok */
+        margin-bottom: 5px; /* Margin bawah link */
+      }
+
+      .album-item small {
+        color: #303a43; /* Warna teks kecil */
+        display: block; /* Teks kecil sebagai blok */
+        margin-bottom: 15px; /* Margin bawah teks kecil */
+        font-size: 0.9em; /* Ukuran font kecil */
+      }
+
+      .album-item img {
+        width: 100%; /* Lebar gambar 100% */
+        height: auto; /* Tinggi menyesuaikan */
+        max-width: 180px; /* Batas lebar maksimum gambar */
+        border-radius: 8px; /* Sudut membulat */
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Bayangan gambar */
+      }
+
+      .footer {
+        text-align: center; /* Teks rata tengah */
+        margin-top: 40px; /* Margin atas */
+        padding-top: 20px; /* Padding atas */
+        border-top: 1px solid var(--border-color); /* Garis atas solid */
+        font-size: 0.9em; /* Ukuran font kecil */
+        color: var(--secondary-color); /* Warna teks sekunder */
+      }
+
+      .social-links {
+        text-align: center; /* Teks rata tengah */
+        margin-top: 10px; /* Margin atas */
+      }
+
+      .social-links a {
+        /** Mengatur gaya ikon tautan sosial individu. */
+        display: inline-block;
+        margin: 0 10px;
+        transition: transform 0.3s ease;
+      }
+
+      .social-links a:hover {
+        /** Mendefinisikan keadaan hover untuk ikon sosial. */
+        transform: scale(1.1);
+      }
+
+      .social-icon {
+        /** Mengatur gaya ikon sosial itu sendiri. */
+        width: 60px;
+        height: auto;
+        border-radius: 8px;
+      }
+
+      @media (max-width: 768px) {
+        /* Media query untuk perangkat dengan lebar layar kurang dari 768px */
+        body {
+          padding: 10px; /* Mengurangi padding body */
+        }
+        .container {
+          padding: 20px; /* Mengurangi padding container */
+          margin: 20px auto; /* Mengurangi margin container */
+        }
+        .header h1 {
+          font-size: 2.5em; /* Mengurangi ukuran font h1 */
+        }
+        .profile-list {
+          display: block; /* Mengatur list sebagai blok */
+        }
+        .album-list {
+          flex-direction: column; /* Mengubah arah flex menjadi kolom */
+          align-items: center; /* Menengahkan item secara horizontal */
+        }
+        .album-item {
+          width: 100%; /* Lebar item 100% */
+          max-width: none; /* Menghilangkan batas lebar maksimum */
+        }
+      }
+
+      .quote-container {
+        border-left: 4px solid var(--accent-color); /* Garis tebal di kiri */
+        padding-left: 20px; /* Padding kiri */
+        font-style: italic; /* Gaya font miring */
+        color: var(--secondary-color); /* Warna font sekunder */
+      }
+      --- .quote-text {
+        margin: 0; /* Menghilangkan margin */
+      }
+
+      /* CSS untuk formulir pesan Jemari */
+      .form-container {
+        /** Mengatur gaya wadah formulir kontak. Menambahkan padding, warna latar belakang, sudut membulat, dan bayangan kotak. */
+        margin-top: 40px; /* Margin atas */
+        background-color: var(--bg-color); /* Warna latar belakang formulir */
+        padding: 20px 40px; /* Padding di dalam formulir */
+        border-radius: 8px; /* Sudut membulat */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Bayangan lembut */
+        max-width: 400px; /* Batas lebar maksimum formulir */
+        margin-left: auto; /* Menengahkan formulir */
+        margin-right: auto; /* Menengahkan formulir */
+      }
+
+      .form-container h1 {
+        text-align: center; /* Teks h1 rata tengah */
+        margin-bottom: 20px; /* Margin bawah */
+        font-family: serif; /* Mengatur font */
+        color: var(--primary-color); /* Warna font utama */
+      }
+
+      .form-container h2 {
+        margin-top: 40px; /* Margin atas */
+        font-size: 1.2em; /* Ukuran font sedang */
+        font-weight: bold; /* Ketebalan font tebal */
+        color: var(--primary-color); /* Warna font utama */
+      }
+
+      .form-container label {
+        display: block; /* Label sebagai blok */
+        margin-bottom: 5px; /* Margin bawah */
+        font-weight: bold; /* Ketebalan font tebal */
+        color: var(--primary-color); /* Warna font utama */
+      }
+
+      .form-container input,
+      .form-container textarea,
+      .form-container select {
+        width: 100%; /* Lebar 100% dari parent */
+        padding: 10px; /* Padding di dalam input */
+        margin-bottom: 20px; /* Margin bawah */
+        border: 1px solid var(--border-color); /* Garis tepi solid */
+        border-radius: 4px; /* Sudut membulat */
+        box-sizing: border-box; /* Ukuran kotak termasuk padding dan border */
+        font-size: 1em; /* Ukuran font */
+        color: var(--secondary-color); /* Warna teks sekunder */
+        background-color: #e8e8e8; /* Warna latar belakang input */
+      }
+      --- .form-container button {
+        width: 100%; /* Lebar 100% dari parent */
+        padding: 10px; /* Padding di dalam tombol */
+        background-color: var(--accent-color); /* Warna latar belakang aksen */
+        border: none; /* Menghilangkan border */
+        border-radius: 4px; /* Sudut membulat */
+        cursor: pointer; /* Mengubah kursor menjadi pointer */
+        font-size: 1em; /* Ukuran font */
+        color: #ffffff; /* Warna teks putih */
+        transition: background-color 0.3s ease; /* Transisi untuk efek hover */
+      }
+      --- .form-container button:hover {
+        background-color: var(
+          --primary-color
+        ); /* Mengubah warna latar belakang saat dihover */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>Juicy Luicy</h1>
+        <p class="welcome-text">Halo JEMARI! Kami dari Juicy Luicy!</p>
+      </div>
+
+      <div class="profile-img">
+        <img
+          src="assets/img/Juicy Luicy.png"
+          height="250"
+          width="350"
+          alt="Foto grup Juicy Luicy"
+        />
+      </div>
+
+      <h2>Profil Singkat</h2>
+      <ul class="profile-list">
+        <li>
+          <strong>Anggota:</strong> Julian Kaisar
+          <strong
+            ><cite><u>(Vokal)</u></cite></strong
+          >, Denis Ligia
+          <strong
+            ><cite><u>(Gitar Elektrik)</u></cite></strong
+          >, Zamzam Y.M
+          <strong
+            ><cite><u>(Saxsophone, Gitar Akustik)</u></cite></strong
+          >, Eggy Ramndha
+          <strong
+            ><cite><u>(Drum)</u></cite></strong
+          >, dan Bina Bagja
+          <strong
+            ><cite><u>(Bass)</u></cite></strong
+          >.
+        </li>
+        <li>
+          <strong>Asal:</strong> Bandung, <cite>Jawa Barat</cite>, Indonesia
+        </li>
+        <li><strong>Genre:</strong> Pop - R&B - Soul - Jazz - Neo Soul</li>
+        <li><strong>Tahun Aktif:</strong> 2010 - sekarang</li>
+        <li><strong>Label:</strong> E-Motion Entertainment</li>
+      </ul>
+
+      <hr />
+
+      <div class="content-section">
+        <h2>Perjalanan Musik Band Juicy Luicy</h2>
+        <p class="post-info">Diposting pada 08 September</p>
+
+        <h3>Etimologi</h3>
+        <p>
+          Nama <strong>Juicy Luicy</strong> terinspirasi dari film
+          <cite><b>50 First Dates</b></cite> di mana karakter utamanya bernama
+          <cite
+            ><u><b>Lucy</b></u></cite
+          >
+          (Luicy) dan memiliki
+          <cite
+            ><u><b>bibir yang menarik</b></u></cite
+          >
+          (Juicy).
+        </p>
+        <hr />
+        <h3>Karir Band Juicy Luicy</h3>
+        <p>
+          Perjalanan Juicy Luicy dimulai di <strong>Bandung</strong> pada tahun
+          <strong>2010</strong> sebagai band indie. Dengan Julian Kaisar, yang
+          akrab disapa <cite><strong>Uan Kaisar</strong></cite> sebagai vokalis,
+          mereka mulai dikenal di komunitas musik lokal dengan lagu-lagu
+          berlirik menyentuh hati.
+        </p>
+        <p>
+          Album perdana mereka, <strong>"Sentimental"</strong> (2020),
+          mengukuhkan posisi mereka di industri musik. Lagu-lagu seperti
+          <strong>"Lantas"</strong>, <strong>"Tampar"</strong>, dan
+          <strong>"Tanpa Tergesa"</strong> berhasil meraih jutaan
+          <cite>streams</cite> dan menempati posisi teratas di berbagai platform
+          musik digital.
+        </p>
+        <p>
+          Hingga saat ini, <strong>Juicy Luicy</strong> dikenal sebagai band
+          yang konsisten menciptakan lagu-lagu pop yang
+          <cite>easy listening</cite> namun memiliki lirik yang dalam, yang
+          sering disebut sebagai
+          <strong>"Lagu untuk Korban Sakit Hati."</strong> Perjalanan mereka
+          membuktikan bahwa dengan menjaga identitas dan kejujuran dalam
+          berkarya, sebuah band indie bisa sukses menembus pasar mainstream
+          tanpa kehilangan karakter aslinya.
+        </p>
+        <hr />
+        <h2>Album & Single Juicy Luicy</h2>
+        <ul class="album-list">
+          <li class="album-item">
+            <a
+              href="https://open.spotify.com/album/0fKHTjXgb4s1xihZ7vQpQ2?si=wnJfBFMAQ4Ga-vO9L3UvlQ"
+              >Aku Cinta Dia Yang Cinta Pacarnya</a
+            >
+            <small>Album musik Juicy Luicy. 2015</small>
+            <img
+              src="assets/img/acdycp.jpg"
+              width="200"
+              alt="Cover album Aku Cinta Dia Yang Cinta Pacarnya"
+            />
+          </li>
+          <li class="album-item">
+            <a
+              href="https://open.spotify.com/album/36terPUEkAiVLOf4pFsAmU?si=XBz_iMR9S0OQ0_TY8k6nrQ"
+              >Terlalu Tinggi</a
+            >
+            <small>Album musik Juicy Luicy. 2016</small>
+            <img
+              src="assets/img/terlalu tinggi.jpg"
+              width="200"
+              alt="Cover album Terlalu Tinggi"
+            />
+          </li>
+          <li class="album-item">
+            <a
+              href="https://open.spotify.com/album/4XaaGPX1xavHLo2vJJ2u03?si=v1dHPeIKTjqJ1K5yzD0png"
+              >Tanpa Tergesa</a
+            >
+            <small>Album musik Juicy Luicy. 2018</small>
+            <img
+              src="assets/img/tanpa tergesa.jpg"
+              width="200"
+              alt="Cover album Tanpa Tergesa"
+            />
+          </li>
+          <li class="album-item">
+            <a
+              href="https://open.spotify.com/album/5gD7pF3AnsXeioYITnUu1y?si=0bphhgVBR-qI4cdK03fa2g"
+              >Mawar Jingga</a
+            >
+            <small>Album musik Juicy Luicy. 2019</small>
+            <img
+              src="assets/img/mawar jingga.jpg"
+              width="200"
+              alt="Cover album Mawar Jingga"
+            />
+          </li>
+          <li class="album-item">
+            <a
+              href="https://open.spotify.com/album/17vUW6koeUkV58uYfkK6G3?si=eTjuk9utQ6u8qiJHoeycyg"
+              >Sentimental</a
+            >
+            <small>Album musik Juicy Luicy. 2020</small>
+            <img
+              src="assets/img/sentimental.jpg"
+              width="200"
+              alt="Cover album Sentimental"
+            />
+          </li>
+          <li class="album-item">
+            <a
+              href="https://open.spotify.com/album/5G7IjWBWCNZa5JCmUZVd8O?si=j31MBh9WSceJnGg-PEOezA"
+              >Lagu Nikah</a
+            >
+            <small>Album musik Juicy Luicy. 2020</small>
+            <img
+              src="assets/img/nikah.jpg"
+              width="200"
+              alt="Cover album Lagu Nikah"
+            />
+          </li>
+          <li class="album-item">
+            <a
+              href="https://open.spotify.com/album/22sjNQiKmvlxJMndPSxqea?si=XueBS9qdSOSKGAf2DLqXRQ"
+              >Lantas</a
+            >
+            <small>Album musik Juicy Luicy. 2020</small>
+            <img
+              src="assets/img/lantas.jpg"
+              width="200"
+              alt="Cover album Lantas"
+            />
+          </li>
+          <li class="album-item">
+            <a
+              href="https://open.spotify.com/album/6VxSXywvuuueNIUXx4GtFD?si=xEkf4doURQ-M6FHaItwIAg"
+              >H-5</a
+            >
+            <small>Album musik Juicy Luicy. 2020</small>
+            <img src="assets/img/5.jpg" width="200" alt="Cover album H-5" />
+          </li>
+          <li class="album-item">
+            <a
+              href="https://open.spotify.com/album/0dZILZkNcP32xDEN1kpfMr?si=0Pgkxmy7Sgy4vdXF0W3QnA"
+              >Tanggung Jawab</a
+            >
+            <small>Album musik Juicy Luicy. 2021</small>
+            <img
+              src="assets/img/jawab.jpg"
+              width="200"
+              alt="Cover album Tanggung Jawab"
+            />
+          </li>
+          <li class="album-item">
+            <a
+              href="https://open.spotify.com/album/2lZzryqflrZLO9YDjnlkMz?si=D21xCroMTbCKKfVFR8EoPQ"
+              >Tampar</a
+            >
+            <small>Album musik Juicy Luicy. 2022</small>
+            <img
+              src="assets/img/tampar.jpg"
+              width="200"
+              alt="Cover album Tampar"
+            />
+          </li>
+          <li class="album-item">
+            <a
+              href="https://open.spotify.com/album/4UDW5PVx47VL4cokwJMi1H?si=8pSv5yoKSdeHDP5kDKXMMg"
+              >Sayangnya</a
+            >
+            <small>Album musik Juicy Luicy. 2022</small>
+            <img
+              src="assets/img/sygnya.jpg"
+              width="200"
+              alt="Cover album Sayangnya"
+            />
+          </li>
+          <li class="album-item">
+            <a
+              href="https://open.spotify.com/album/3FXBtyRQwZsXShVvBc9ulh?si=UEAYF3DXTMqFXt1hUVuZCA"
+              >Sialan</a
+            >
+            <small>Album musik Juicy Luicy. 2023</small>
+            <img
+              src="assets/img/sialan.jpg"
+              width="200"
+              alt="Cover album Sialan"
+            />
+          </li>
+          <li class="album-item">
+            <a
+              href="https://open.spotify.com/album/7nmwxEZGiHRlQSj1G1jj4Q?si=yBKLoAWoSkOcEalcs47TYg"
+              >Tak Di Tanganku <small>ft. Mawar de Jongh</small></a
+            >
+            <small>Album musik Juicy Luicy. 2023</small>
+            <img
+              src="assets/img/tdt.jpg"
+              width="200"
+              alt="Cover album Tak Di Tanganku"
+            />
+          </li>
+          <li class="album-item">
+            <a
+              href="https://open.spotify.com/album/08pl2TGC3mp8XJ9CUfzID7?si=uWNOPGI5SGy-jVbHqZWsPQ"
+              >Asing</a
+            >
+            <small>Album musik Juicy Luicy. 2023</small>
+            <img
+              src="assets/img/asing.jpg"
+              width="200"
+              alt="Cover album Asing"
+            />
+          </li>
+          <li class="album-item">
+            <a
+              href="https://open.spotify.com/album/32KsXDdSdv8lJFKwt1cSEI?si=CK0XqZ6bQEKP5KDhIBvGKw"
+              >HAHAHA</a
+            >
+            <small>Album musik Juicy Luicy. 2024</small>
+            <img src="assets/img/h.jpg" width="200" alt="Cover album HAHAHA" />
+          </li>
+          <li class="album-item">
+            <a
+              href="https://open.spotify.com/album/27Ul1EwxPb7vJ4DBUX8MOg?si=xtfe_26MRwq6Vb9KCOHoKA"
+              >Insya Allah</a
+            >
+            <small>Album musik Juicy Luicy. 2024</small>
+            <img
+              src="assets/img/ia.jpg"
+              width="200"
+              alt="Cover album Insya Allah"
+            />
+          </li>
+          <li class="album-item">
+            <a
+              href="https://open.spotify.com/album/17vUW6koeUkV58uYfkK6G3?si=eTjuk9utQ6u8qiJHoeycyg"
+              >Nonfiksi</a
+            >
+            <small>Album musik Juicy Luicy. 2024</small>
+            <img
+              src="assets/img/nonfiksi.jpg"
+              width="200"
+              alt="Cover album Nonfiksi"
+            />
+          </li>
+          <li class="album-item">
+            <a
+              href="https://open.spotify.com/album/27Ul1EwxPb7vJ4DBUX8MOg?si=xtfe_26MRwq6Vb9KCOHoKA"
+              >Malapetaka</a
+            >
+            <small>Album musik Juicy Luicy. 2025</small>
+            <img
+              src="assets/img/m.jpg"
+              width="200"
+              alt="Cover album Malapetaka"
+            />
+          </li>
+        </ul>
+      </div>
+      <footer class="footer">
+        <p>
+          Sebuah momen yang paling berkesan bagi kami adalah saat melihat
+          <mark>JEMARI</mark> di konser, seakan semua orang saling berbagi
+          cerita tentang pengalaman mereka yang nekat. Ini adalah hal yang
+          paling berharga bagi kami.
+        </p>
+        <footer class="footer">
+          <div class="quote-container">
+            <p class="quote-text">
+              Seperti yang pernah dikatakan oleh <cite>Juicy Luicy</cite> ,
+              <cite
+                >"Mengapa ku tancap gas dan melaju, padahal lampu kuning telah
+                peringatkanku"</cite
+              >
+              . kutipan dari lagu "Lantas". Ini adalah kata-kata yang
+              menginspirasi saya untuk menghargai setiap momen, bahkan saat
+              sebuah hubungan tidak bisa terwujud, dan mengingatkan saya bahwa
+              setiap pengalaman memiliki makna tersendiri.
+            </p>
+          </div>
+        </footer>
+      </footer>
+      <footer class="footer"></footer>
+
+      <div class="form-container">
+        <form action="#">
+          <h1>Tinggalkan Pesan untuk Juicy Luicy</h1>
+          <label for="jemari-name">Nama JEMARI:</label>
+          <input type="text" id="jemari-name" name="jemari-name" />
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" />
+          <h2>Pesan:</h2>
+          <textarea
+            id="message"
+            name="message"
+            rows="10"
+            placeholder="Tulis pesan Anda untuk JUICY Luicy di sini..."
+          ></textarea>
+          <label for="mood">Gimana mood hari ini, JEMARI?!:</label>
+          <select id="mood" name="mood">
+            <option value="happy-banget!">happy banget!</option>
+            <option value="chill-aja">chill aja</option>
+            <option value="galau-parah">galau parah</option>
+            <option value="kangen-banget!">kangen banget!</option>
+          </select>
+          <button type="submit">Kirim Pesan</button>
+        </form>
+      </div>
+      <footer class="footer">
+        <p><small>Hak Cipta © 2025 Juicy Luicy. All Rights Reserved.</small></p>
+
+        <small>
+          <div class="social-links">
+            <a href="https://www.tiktok.com/@juicyluicy" target="_blank">
+              <img src="assets/img/tl.jpg" alt="TikTok" class="social-icon" />
+            </a>
+            <a href="https://www.instagram.com/juicyluicyband/" target="_blank">
+              <img
+                src="assets/img/ig.jpg"
+                alt="Instagram"
+                class="social-icon"
+              />
+            </a>
+            <a
+              href="https://open.spotify.com/artist/0yqCgC5Vv0Jb7aTjJd0V0I"
+              target="_blank"
+            >
+              <img src="assets/img/sp.jpg" alt="Spotify" class="social-icon" />
+            </a>
+          </div>
+        </small>
+      </footer>
+    </div>
+  </body>
+</html>
